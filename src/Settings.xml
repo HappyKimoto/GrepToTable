@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root>
+    <ConsoleTitle>Name of Command Prompt Title</ConsoleTitle>
+    <MappingOptions>
+        <!-- encoding: (shift-jis, ascii, utf-8) whatever is supported with ADODB.Stream CharSet -->
+        <Encoding type="input">shift-jis</Encoding>
+        <Encoding type="output">shift-jis</Encoding>
+        <!-- recursive search: (True: Recursive, False: Top Only)-->
+        <Search type="recursive">True</Search>
+        <!-- sort by date: (True: Sort by date, False: Do not sort by date)-->
+        <Sort type="date">True</Sort>
+        <!-- filter by regular expression (no filtering in case of empty)-->
+        <Filter type="regexp">.*txt</Filter>
+        <!-- column separator(9=tab, 44=comma, 59=semicolon) Converted to a character by function Chr()-->
+        <ColSep type="number">9</ColSep>
+    </MappingOptions>
+    <GrepPatterns>
+        <GrepPattern index="1" name="ShortDescription">
+            <ColumnHeader>Column Names Separated By Space</ColumnHeader>
+            <Pattern>Regular Expression with Grouping</Pattern>
+            <GroupCount>The number of group expressions</GroupCount>
+            <FileName>FileName.txt</FileName>
+        </GrepPattern>
+        <GrepPattern index="2" name="Greetings">
+            <ColumnHeader>TimeOfDay FirstName</ColumnHeader>
+            <Pattern>Good (Morning|Afternoon|Evening), ([a-zA-Z]+)!</Pattern>
+            <GroupCount>2</GroupCount>
+            <FileName>GreetingExtract.txt</FileName>
+        </GrepPattern>
+    </GrepPatterns>
+</Root>
