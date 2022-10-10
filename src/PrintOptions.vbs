@@ -6,7 +6,7 @@ Sub PrintOptions(strFpSetting)
     Set objDOM = CreateObject("Msxml2.DOMDocument.6.0")
     objDOM.Load strFpSetting
     For Each objGP In objDOM.SelectNodes("/Root/GrepPatterns/GrepPattern")
-        WScript.Echo objGP.getAttribute("index") & vbTab & objGP.getAttribute("name")
+        WScript.Echo objGP.getAttribute("index") & ": " & objGP.getAttribute("name")
     Next
     Set objGP = Nothing
     Set objDOM = Nothing
