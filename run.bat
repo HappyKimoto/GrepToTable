@@ -37,12 +37,16 @@ REM     chdir c
 REM     mkdir d
 REM which is what you would have to type if extensions were disabled.
 
-echo --- Clean temp
-RMDIR /S /Q .\temp
-MKDIR .\temp
+SETLOCAL
+set "TempFolder=.\temp"
+
+CALL :CleanTempFolder %TempFolder%
+
+echo ---Get Settings
+set /p "FpSetting=File path of the setting: "
 
 echo ---Print Options
-cscript //nologo .\src\PrintOptions.vbs .\src\Settings.xml
+cscript //nologo .\src\PrintOptions.vbs %FpSetting%
 
 echo ---Pattern Index Selection
 set /p "PatternIndex=Pattern Index: "
@@ -60,3 +64,19 @@ echo.
 
 echo ---Run GrepToTable.vbs
 cscript //nologo .\src\GrepToTable.vbs %DirIn% %DirOut% %PatternIndex% .\src\Settings.xml .\temp
+
+CALL :CleanTempFolder  %TempFolder%
+
+EXIT /B %ERRORLEVEL%
+
+REM Delete the temp folder if it exists
+REM Create a new folder.
+:CleanTempFolder
+echo.
+echo ---Press Enter to clean up temp folder.
+pause
+if exist %~1 (
+RMDIR /S /Q %~1
+)
+MKDIR %~1
+EXIT /B 0
